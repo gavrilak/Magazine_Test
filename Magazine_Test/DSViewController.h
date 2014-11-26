@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSViewController : UIViewController
+@interface DSViewController : UIViewController <UITableViewDataSource , UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
