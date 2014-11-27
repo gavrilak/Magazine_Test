@@ -10,17 +10,7 @@
 
 @implementation DSRateView
 
-@synthesize notSelectedImage = _notSelectedImage;
-@synthesize halfSelectedImage = _halfSelectedImage;
-@synthesize fullSelectedImage = _fullSelectedImage;
-@synthesize rating = _rating;
-@synthesize editable = _editable;
-@synthesize imageViews = _imageViews;
-@synthesize maxRating = _maxRating;
-@synthesize midMargin = _midMargin;
-@synthesize leftMargin = _leftMargin;
-@synthesize minImageSize = _minImageSize;
-@synthesize delegate = _delegate;
+
 
 - (void)baseInit {
     _notSelectedImage = nil;
@@ -30,7 +20,7 @@
     _editable = NO;
     _imageViews = [[NSMutableArray alloc] init];
     _maxRating = 5;
-    _midMargin = 5;
+    _midMargin = 1;
     _leftMargin = 0;
     _minImageSize = CGSizeMake(5, 5);
     _delegate = nil;
@@ -97,7 +87,7 @@
     // Add new image views
     for(int i = 0; i < maxRating; ++i) {
         UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.imageViews addObject:imageView];
         [self addSubview:imageView];
     }

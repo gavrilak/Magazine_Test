@@ -44,12 +44,25 @@
 		329F25E51A20DDA60095F6A5 /* DSProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F25E41A20DDA60095F6A5 /* DSProductViewController.m */; };
 		329F25E91A25ADEA0095F6A5 /* DSAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F25E81A25ADEA0095F6A5 /* DSAccessToken.m */; };
 		329F25EC1A25AF3F0095F6A5 /* DSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F25EB1A25AF3F0095F6A5 /* DSUser.m */; };
-		329F25F21A25B7B30095F6A5 /* kermit_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F25EF1A25B7B30095F6A5 /* kermit_empty.png */; };
-		329F25F31A25B7B30095F6A5 /* kermit_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F25F01A25B7B30095F6A5 /* kermit_full.png */; };
-		329F25F41A25B7B30095F6A5 /* kermit_half.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F25F11A25B7B30095F6A5 /* kermit_half.png */; };
 		329F25F71A25B9480095F6A5 /* DSRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F25F61A25B9480095F6A5 /* DSRateView.m */; };
 		329F25FA1A25BBBE0095F6A5 /* DSReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F25F91A25BBBE0095F6A5 /* DSReviewCell.m */; };
 		329F25FD1A25E9F20095F6A5 /* DSProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F25FC1A25E9F20095F6A5 /* DSProductCell.m */; };
+		329F26021A25FC3E0095F6A5 /* AccessAccountButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F25FF1A25FC3E0095F6A5 /* AccessAccountButton.png */; };
+		329F26031A25FC3E0095F6A5 /* createAccountButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26001A25FC3E0095F6A5 /* createAccountButton.png */; };
+		329F26041A25FC3E0095F6A5 /* mainPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26011A25FC3E0095F6A5 /* mainPage.png */; };
+		329F26061A25FC610095F6A5 /* TextfieldBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26051A25FC610095F6A5 /* TextfieldBackgroud.png */; };
+		329F26081A25FC890095F6A5 /* DropDownListButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26071A25FC890095F6A5 /* DropDownListButton.png */; };
+		329F260A1A25FC930095F6A5 /* SubmitButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26091A25FC930095F6A5 /* SubmitButton.png */; };
+		329F260C1A25FC9C0095F6A5 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F260B1A25FC9C0095F6A5 /* CloseButton.png */; };
+		329F26101A25FD1E0095F6A5 /* backgroundBottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F260F1A25FD1E0095F6A5 /* backgroundBottomBar.png */; };
+		329F26121A25FD7A0095F6A5 /* createAccountBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26111A25FD7A0095F6A5 /* createAccountBar.png */; };
+		329F26151A2600360095F6A5 /* DSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F26141A2600360095F6A5 /* DSMainViewController.m */; };
+		329F26191A27121D0095F6A5 /* zvezda_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26161A27121D0095F6A5 /* zvezda_full.png */; };
+		329F261A1A27121D0095F6A5 /* zvezda_half.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26171A27121D0095F6A5 /* zvezda_half.png */; };
+		329F261B1A27121D0095F6A5 /* zvezda_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 329F26181A27121D0095F6A5 /* zvezda_empty.png */; };
+		329F261D1A27145E0095F6A5 /* knopka_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 329F261C1A27145E0095F6A5 /* knopka_1.jpg */; };
+		329F26201A2716CC0095F6A5 /* DSSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F261F1A2716CC0095F6A5 /* DSSignUpViewController.m */; };
+		329F26231A2718940095F6A5 /* DSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F26221A2718940095F6A5 /* DSTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,15 +143,31 @@
 		329F25E81A25ADEA0095F6A5 /* DSAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAccessToken.m; sourceTree = "<group>"; };
 		329F25EA1A25AF3F0095F6A5 /* DSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSUser.h; sourceTree = "<group>"; };
 		329F25EB1A25AF3F0095F6A5 /* DSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSUser.m; sourceTree = "<group>"; };
-		329F25EF1A25B7B30095F6A5 /* kermit_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit_empty.png; sourceTree = "<group>"; };
-		329F25F01A25B7B30095F6A5 /* kermit_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit_full.png; sourceTree = "<group>"; };
-		329F25F11A25B7B30095F6A5 /* kermit_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit_half.png; sourceTree = "<group>"; };
 		329F25F51A25B9480095F6A5 /* DSRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSRateView.h; sourceTree = "<group>"; };
 		329F25F61A25B9480095F6A5 /* DSRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSRateView.m; sourceTree = "<group>"; };
 		329F25F81A25BBBE0095F6A5 /* DSReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSReviewCell.h; sourceTree = "<group>"; };
 		329F25F91A25BBBE0095F6A5 /* DSReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSReviewCell.m; sourceTree = "<group>"; };
 		329F25FB1A25E9F20095F6A5 /* DSProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSProductCell.h; sourceTree = "<group>"; };
 		329F25FC1A25E9F20095F6A5 /* DSProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSProductCell.m; sourceTree = "<group>"; };
+		329F25FF1A25FC3E0095F6A5 /* AccessAccountButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AccessAccountButton.png; sourceTree = "<group>"; };
+		329F26001A25FC3E0095F6A5 /* createAccountButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createAccountButton.png; sourceTree = "<group>"; };
+		329F26011A25FC3E0095F6A5 /* mainPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainPage.png; sourceTree = "<group>"; };
+		329F26051A25FC610095F6A5 /* TextfieldBackgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextfieldBackgroud.png; sourceTree = "<group>"; };
+		329F26071A25FC890095F6A5 /* DropDownListButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DropDownListButton.png; sourceTree = "<group>"; };
+		329F26091A25FC930095F6A5 /* SubmitButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SubmitButton.png; sourceTree = "<group>"; };
+		329F260B1A25FC9C0095F6A5 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
+		329F260F1A25FD1E0095F6A5 /* backgroundBottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundBottomBar.png; sourceTree = "<group>"; };
+		329F26111A25FD7A0095F6A5 /* createAccountBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createAccountBar.png; sourceTree = "<group>"; };
+		329F26131A2600360095F6A5 /* DSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMainViewController.h; sourceTree = "<group>"; };
+		329F26141A2600360095F6A5 /* DSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMainViewController.m; sourceTree = "<group>"; };
+		329F26161A27121D0095F6A5 /* zvezda_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zvezda_full.png; sourceTree = "<group>"; };
+		329F26171A27121D0095F6A5 /* zvezda_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zvezda_half.png; sourceTree = "<group>"; };
+		329F26181A27121D0095F6A5 /* zvezda_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zvezda_empty.png; sourceTree = "<group>"; };
+		329F261C1A27145E0095F6A5 /* knopka_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = knopka_1.jpg; sourceTree = "<group>"; };
+		329F261E1A2716CC0095F6A5 /* DSSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSignUpViewController.h; sourceTree = "<group>"; };
+		329F261F1A2716CC0095F6A5 /* DSSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSignUpViewController.m; sourceTree = "<group>"; };
+		329F26211A2718940095F6A5 /* DSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSTextField.h; sourceTree = "<group>"; };
+		329F26221A2718940095F6A5 /* DSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,9 +231,19 @@
 		320BEC921A20155500560A35 /* Magazine_Test */ = {
 			isa = PBXGroup;
 			children = (
-				329F25EF1A25B7B30095F6A5 /* kermit_empty.png */,
-				329F25F01A25B7B30095F6A5 /* kermit_full.png */,
-				329F25F11A25B7B30095F6A5 /* kermit_half.png */,
+				329F26111A25FD7A0095F6A5 /* createAccountBar.png */,
+				329F260F1A25FD1E0095F6A5 /* backgroundBottomBar.png */,
+				329F26161A27121D0095F6A5 /* zvezda_full.png */,
+				329F261C1A27145E0095F6A5 /* knopka_1.jpg */,
+				329F26171A27121D0095F6A5 /* zvezda_half.png */,
+				329F26181A27121D0095F6A5 /* zvezda_empty.png */,
+				329F26091A25FC930095F6A5 /* SubmitButton.png */,
+				329F260B1A25FC9C0095F6A5 /* CloseButton.png */,
+				329F26071A25FC890095F6A5 /* DropDownListButton.png */,
+				329F26051A25FC610095F6A5 /* TextfieldBackgroud.png */,
+				329F25FF1A25FC3E0095F6A5 /* AccessAccountButton.png */,
+				329F26001A25FC3E0095F6A5 /* createAccountButton.png */,
+				329F26011A25FC3E0095F6A5 /* mainPage.png */,
 				320BEC9B1A20155500560A35 /* DSAppDelegate.h */,
 				320BEC9C1A20155500560A35 /* DSAppDelegate.m */,
 				320BEC9E1A20155500560A35 /* Main.storyboard */,
@@ -316,6 +355,8 @@
 				329F25EB1A25AF3F0095F6A5 /* DSUser.m */,
 				329F25F51A25B9480095F6A5 /* DSRateView.h */,
 				329F25F61A25B9480095F6A5 /* DSRateView.m */,
+				329F26211A2718940095F6A5 /* DSTextField.h */,
+				329F26221A2718940095F6A5 /* DSTextField.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -329,6 +370,10 @@
 				320BECA21A20155500560A35 /* DSViewController.m */,
 				329F25E31A20DDA60095F6A5 /* DSProductViewController.h */,
 				329F25E41A20DDA60095F6A5 /* DSProductViewController.m */,
+				329F26131A2600360095F6A5 /* DSMainViewController.h */,
+				329F26141A2600360095F6A5 /* DSMainViewController.m */,
+				329F261E1A2716CC0095F6A5 /* DSSignUpViewController.h */,
+				329F261F1A2716CC0095F6A5 /* DSSignUpViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -421,12 +466,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				329F26101A25FD1E0095F6A5 /* backgroundBottomBar.png in Resources */,
 				320BECA51A20155500560A35 /* Images.xcassets in Resources */,
-				329F25F21A25B7B30095F6A5 /* kermit_empty.png in Resources */,
-				329F25F41A25B7B30095F6A5 /* kermit_half.png in Resources */,
-				329F25F31A25B7B30095F6A5 /* kermit_full.png in Resources */,
+				329F260C1A25FC9C0095F6A5 /* CloseButton.png in Resources */,
+				329F260A1A25FC930095F6A5 /* SubmitButton.png in Resources */,
+				329F26021A25FC3E0095F6A5 /* AccessAccountButton.png in Resources */,
+				329F26061A25FC610095F6A5 /* TextfieldBackgroud.png in Resources */,
+				329F26191A27121D0095F6A5 /* zvezda_full.png in Resources */,
 				320BEC971A20155500560A35 /* InfoPlist.strings in Resources */,
+				329F26081A25FC890095F6A5 /* DropDownListButton.png in Resources */,
 				320BECA01A20155500560A35 /* Main.storyboard in Resources */,
+				329F261B1A27121D0095F6A5 /* zvezda_empty.png in Resources */,
+				329F261A1A27121D0095F6A5 /* zvezda_half.png in Resources */,
+				329F26121A25FD7A0095F6A5 /* createAccountBar.png in Resources */,
+				329F26041A25FC3E0095F6A5 /* mainPage.png in Resources */,
+				329F26031A25FC3E0095F6A5 /* createAccountButton.png in Resources */,
+				329F261D1A27145E0095F6A5 /* knopka_1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,11 +508,13 @@
 				320BECFF1A201C5C00560A35 /* UIProgressView+AFNetworking.m in Sources */,
 				320BECF91A201C5C00560A35 /* AFURLSessionManager.m in Sources */,
 				320BECF71A201C5C00560A35 /* AFURLRequestSerialization.m in Sources */,
+				329F26231A2718940095F6A5 /* DSTextField.m in Sources */,
 				320BEC991A20155500560A35 /* main.m in Sources */,
 				320BED001A201C5C00560A35 /* UIRefreshControl+AFNetworking.m in Sources */,
 				320BECF81A201C5C00560A35 /* AFURLResponseSerialization.m in Sources */,
 				329F25F71A25B9480095F6A5 /* DSRateView.m in Sources */,
 				320BECC31A2016CE00560A35 /* DSServerManager.m in Sources */,
+				329F26201A2716CC0095F6A5 /* DSSignUpViewController.m in Sources */,
 				329F25EC1A25AF3F0095F6A5 /* DSUser.m in Sources */,
 				320BECFE1A201C5C00560A35 /* UIImageView+AFNetworking.m in Sources */,
 				320BECA31A20155500560A35 /* DSViewController.m in Sources */,
@@ -465,6 +522,7 @@
 				320BECF21A201C5C00560A35 /* AFHTTPRequestOperationManager.m in Sources */,
 				320BECF51A201C5C00560A35 /* AFSecurityPolicy.m in Sources */,
 				320BED041A20208D00560A35 /* DSReview.m in Sources */,
+				329F26151A2600360095F6A5 /* DSMainViewController.m in Sources */,
 				329F25E91A25ADEA0095F6A5 /* DSAccessToken.m in Sources */,
 				320BED011A201C5C00560A35 /* UIWebView+AFNetworking.m in Sources */,
 				320BECC91A2018D100560A35 /* DSProduct.m in Sources */,

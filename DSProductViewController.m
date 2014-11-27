@@ -117,9 +117,9 @@
         cell.rateView.editable = false;
         cell.rateView.rating = [review.rate floatValue];
     
-        cell.rateView.notSelectedImage = [UIImage imageNamed:@"kermit_empty.png"];
-        cell.rateView.halfSelectedImage = [UIImage imageNamed:@"kermit_half.png"];
-        cell.rateView.fullSelectedImage = [UIImage imageNamed:@"kermit_full.png"];
+        cell.rateView.notSelectedImage = [UIImage imageNamed:@"zvezda_empty.png"];
+        cell.rateView.halfSelectedImage = [UIImage imageNamed:@"zvezda_half.png"];
+        cell.rateView.fullSelectedImage = [UIImage imageNamed:@"zvezda_full.png"];
         cell.rateView.maxRating = 5;
          return cell;
     }
