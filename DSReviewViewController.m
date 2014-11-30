@@ -6,21 +6,22 @@
 //  Copyright (c) 2014 Dima Soldatenko. All rights reserved.
 //
 
-#import "DSProductViewController.h"
+#import "DSReviewViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "DSReview.h"
 #import "DSServerManager.h"
 #import "DSReviewCell.h"
 #import "DSProductCell.h"
 #import "DSRateView.h"
+#import "DSAddReviewCell.h"
 
-@interface DSProductViewController ()
+@interface DSReviewViewController ()
 
    @property (strong, nonatomic) NSArray* reviewsArray;
 
 @end
 
-@implementation DSProductViewController
+@implementation DSReviewViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
     [self  getReviewsFromServer];
     
 }
@@ -44,7 +46,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)addReview:(UIButton *)sender {
+    if([[DSServerManager sharedManager] userIsLogIn]){
+        DSAddReviewViewController *vc = [[DSAddReviewViewController alloc]init];
+        vc.delegate = self;
+        vc.pr_id= self.product.pr_id;
+        UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:vc];
+        [self presentViewController:nv animated:YES completion:nil];
+    }
+    
+}
 #pragma mark - API
 
 - (void) getReviewsFromServer {
@@ -57,17 +68,39 @@
     }];
     
 }
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    DSReview* review;
+
+    switch (indexPath.row) {
+        case 0:
+            return 100;
+            break;
+        case 1:
+            return 30;
+            break;
+        default:
+          review = [self.reviewsArray objectAtIndex:indexPath.row-2];
+          return [review heightForText:review.text] + 65;
+          break;
+    }
+    
+    return 0;
+}
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [self.reviewsArray count] ;
+    return [self.reviewsArray count] + 2  ;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
+    static NSString* identifierAddReview = @"addReview";
     static NSString* identifierReview = @"Review";
     static NSString* identifierProduct = @"Product";
     
@@ -97,9 +130,18 @@
          }];
          return cell;
         
-    }
-    
-    else{
+    }    else  if (indexPath.row == 1) {
+        
+        DSAddReviewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifierAddReview];
+        
+        if (!cell) {
+            cell = [[DSAddReviewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifierAddReview];}
+        
+        [cell.addReviewButton addTarget:self action:@selector(addReview:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return cell;
+        
+    } else {
     
       
         DSReviewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifierReview];
@@ -107,7 +149,7 @@
         if (!cell) {
             cell = [[DSReviewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifierReview];}
     
-        DSReview* review = [self.reviewsArray objectAtIndex:indexPath.row-1];
+        DSReview* review = [self.reviewsArray objectAtIndex:indexPath.row-2];
       
         cell.userLabel.text = review.user;
         cell.postLabel.text = review.text;
@@ -116,14 +158,20 @@
         cell.dateLabel.text =  [objDateFormatter stringFromDate:review.date];
         cell.rateView.editable = false;
         cell.rateView.rating = [review.rate floatValue];
-    
-        cell.rateView.notSelectedImage = [UIImage imageNamed:@"zvezda_empty.png"];
-        cell.rateView.halfSelectedImage = [UIImage imageNamed:@"zvezda_half.png"];
-        cell.rateView.fullSelectedImage = [UIImage imageNamed:@"zvezda_full.png"];
+        cell.rateView.notSelectedImage = [UIImage imageNamed:@"star_empty.png"];
+        cell.rateView.halfSelectedImage = [UIImage imageNamed:@"star_half.png"];
+        cell.rateView.fullSelectedImage = [UIImage imageNamed:@"star_full.png"];
         cell.rateView.maxRating = 5;
          return cell;
     }
    
+}
+#pragma mark - TTAddPostDelegete
+
+- (void)updateData {
+    
+    [self getReviewsFromServer];   
+    
 }
 
 

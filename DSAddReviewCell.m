@@ -1,14 +1,14 @@
 //
-//  DSReviewCell.m
+//  DSAddReviewCell.m
 //  Magazine_Test
 //
-//  Created by Dima on 11/26/14.
+//  Created by Dima on 11/29/14.
 //  Copyright (c) 2014 Dima Soldatenko. All rights reserved.
 //
 
-#import "DSReviewCell.h"
+#import "DSAddReviewCell.h"
 
-@implementation DSReviewCell
+@implementation DSAddReviewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -16,7 +16,6 @@
     if (self) {
         // Initialization code
     }
-    
     return self;
 }
 
@@ -31,6 +30,5 @@
 
     // Configure the view for the selected state
 }
-
 
 @end

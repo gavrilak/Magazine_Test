@@ -1,26 +1,19 @@
 //
 //  DSServerManager.m
-//  Weather_Test
+//  
 //
 //  Created by Dima on 11/22/14.
 //  Copyright (c) 2014 Dima Soldatenko. All rights reserved.
 //
-
 #import "DSServerManager.h"
-#import "DSProduct.h"
-#import "DSReview.h"
 #import "AFNetworking.h"
 #import "DSAccessToken.h"
-
-static NSString* kToken = @"kToken";
-static NSString* kExpirationDate = @"kExpirationDate";
-static NSString* kUserId = @"kUserId";
 
 @interface DSServerManager ()
 
 @property (strong,nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
 @property (strong, nonatomic) DSAccessToken *accessToken;
-@property (strong,nonatomic) NSMutableArray * weatherForecast;
+
 
 @end
 
@@ -43,31 +36,125 @@ static NSString* kUserId = @"kUserId";
     self = [super init];
     if (self) {
         self.requestOperationManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:@"http://smktesting.herokuapp.com/"]];
-        self.weatherForecast= [NSMutableArray array];
+        
     }
+ 
     return self;
 }
 
-- (void)saveSettings:(DSAccessToken *)token {
+
+
+- (void) registerUser:(NSString*) username password:(NSString*) password
+            onSuccess:(void(^)(DSUser* user)) success
+            onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:token.token forKey:kToken];
-    [userDefaults setObject:token.expirationDate forKey:kExpirationDate];
-    [userDefaults setObject:token.userID forKey:kUserId];
-    [userDefaults synchronize];
+    NSDictionary* params =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     username,       @"username",
+     password,   @"password", nil];
+    
+   
+    [self.requestOperationManager
+     POST:@"api/register/"
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
+         NSLog(@"JSON: %@", responseObject);
+         
+         
+         DSUser* user = [[DSUser alloc]initWithServerResponse:responseObject];
+        [self getToken:user username:username password:password onSuccess:^(DSAccessToken *token) {
+            self.accessToken =token;
+            if (success) {
+                success(user);
+            }
+        } onFailure:^(NSError *error, NSInteger statusCode) {
+            NSLog(@"error = %@, code = %d", [error localizedDescription], statusCode);
+        }];
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+         
+         if (failure) {
+             failure(error, operation.response.statusCode);
+         }
+     }];
+    
 }
 
-- (void)loadSettings {
+- (void) loginUser:(NSString*) username password:(NSString*) password
+            onSuccess:(void(^)(id success)) success
+            onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    self.accessToken.token = [userDefaults objectForKey:kToken];
-    self.accessToken.expirationDate = [userDefaults objectForKey:kExpirationDate];
-    self.accessToken.userID = [userDefaults objectForKey:kUserId];
+    NSDictionary* params =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     username,   @"username",
+     password,   @"password", nil];
+    self.requestOperationManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    
+    [self.requestOperationManager
+     POST:@"login/"
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+         
+              if (success) {
+                 success(responseObject);
+            }
+        
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+         
+         if (failure) {
+             failure(error, operation.response.statusCode);
+         }
+     
+     }];
+}
+
+
+- (void) getToken:(DSUser*) user username:(NSString*) username password:(NSString*) password onSuccess:(void(^)(DSAccessToken* token)) success
+            onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
+    
+    NSDictionary* params =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     user.clientKey,      @"client_id",
+     user.clientSecret,   @"client_secret",
+     @"password",   @"grant_type",
+     username,   @"username",
+     password,   @"password",  nil];
+    
+    self.requestOperationManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+   
+    [self.requestOperationManager
+     POST:@"api/oauth2/access_token/"
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
+         NSLog(@"JSON: %@", responseObject);
+         
+         DSAccessToken* token = [[DSAccessToken alloc]initWithServerResponse:responseObject];
+                  
+         if (success) {
+             success(token);
+         }
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+         
+         if (failure) {
+             failure(error, operation.response.statusCode);
+         }
+     }];
     
 }
+
+
 
 - (void) getProductsOnSuccess:(void(^)(NSArray* products)) success
                     onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
+    
     
     [self.requestOperationManager
      GET:@"api/products"
@@ -96,47 +183,9 @@ static NSString* kUserId = @"kUserId";
     
 }
 
-- (void) registerUser:(NSString*) user password:(NSString*) password
-            onSuccess:(void(^)(NSArray* reviews)) success
-            onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
-    
-    NSDictionary* params =
-    [NSDictionary dictionaryWithObjectsAndKeys:
-     user,       @"username",
-     password,   @"password", nil];
-    
-    [self.requestOperationManager
-     POST:@"api/register/"
-     parameters:params
-     success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
-         NSLog(@"JSON: %@", responseObject);
-         
-         
-         NSMutableArray* objectsArray = [NSMutableArray array];
-         
-         for (NSDictionary* dict in responseObject) {
-             DSReview* review = [[DSReview alloc] initWithDictionary:dict];
-             [objectsArray addObject:review];
-         }
-         
-         if (success) {
-             success(objectsArray);
-         }
-         
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"Error: %@", error);
-         
-         if (failure) {
-             failure(error, operation.response.statusCode);
-         }
-     }];
-    
-}
-
 
 - (void) getReviewForProduct:(NSString*) pr_id onSuccess:(void(^)(NSArray* reviews)) success
                     onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
-    
     
     
     [self.requestOperationManager
@@ -145,7 +194,6 @@ static NSString* kUserId = @"kUserId";
      success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
          NSLog(@"JSON: %@", responseObject);
          
-         
          NSMutableArray* objectsArray = [NSMutableArray array];
          
          for (NSDictionary* dict in responseObject) {
@@ -167,5 +215,45 @@ static NSString* kUserId = @"kUserId";
     
 }
 
+- (void) postReviewForProduct:(NSString*) pr_id text:(NSString*)text rate:(NSInteger) rate onSuccess:(void(^)(NSInteger reviewId)) success   onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
+    
+    
+    NSDictionary* params =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     [NSNumber numberWithInteger:rate]   ,@"rate",
+     text,                                @"text", nil];
+
+  
+    self.requestOperationManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+      [[self.requestOperationManager  requestSerializer] setValue:[@"Bearer " stringByAppendingString: self.accessToken.token]  forHTTPHeaderField:@"Authorization"];
+  
+    [self.requestOperationManager
+     POST:[@"api/reviews/" stringByAppendingString:pr_id]
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
+         NSLog(@"JSON: %@", responseObject);
+         
+         if (success) {
+             success([[responseObject objectForKey:@"review_id"] integerValue]);
+         }
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+         
+         if (failure) {
+             failure(error, operation.response.statusCode);
+         }
+     }];
+    
+}
+
+
+- (BOOL) userIsLogIn{
+    
+    if(self.accessToken.token == nil)
+        return false;
+    else
+        return true;
+}
 
 @end

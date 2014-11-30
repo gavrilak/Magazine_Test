@@ -7,9 +7,11 @@
 //
 
 #import "DSSignUpViewController.h"
+#import "DSProductViewController.h"
+#import "DSServerManager.h"
 #import "DSTextField.h"
 
-#define KEYBOARD_OFFSET 70.0
+#define KEYBOARD_OFFSET 10.0
 
 @interface DSSignUpViewController ()
 
@@ -17,8 +19,9 @@
 @property (weak, nonatomic) IBOutlet DSTextField *loginTextField;
 @property (weak, nonatomic) IBOutlet DSTextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet DSTextField *confirmPasswordTextField;
-
 @property (weak, nonatomic) IBOutlet UILabel *passwordConfirmationLabel;
+@property (assign,nonatomic) CGRect keyboardBounds;
+
 @end
 
 @implementation DSSignUpViewController
@@ -51,13 +54,10 @@
     
     NSLog(@"Frame origin Y %f", self.view.frame.origin.y);
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
+                                             selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 }
@@ -75,12 +75,8 @@
                                                   object:nil];
 }
 
-- (IBAction)closeViewController:(id)sender
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
 
-
+#pragma mark - Actions
 
 - (IBAction)submit:(id)sender
 {
@@ -103,47 +99,18 @@
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
     }else{
-       
         
-        [self performSegueWithIdentifier:@"ShowNewUser" sender:self];
-    }
-}
-
-
-
-
-#pragma mark UITextField delegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
--(void)keyboardWillShow
-{
-    [self setViewMovedUp:YES];
-}
-
--(void)keyboardWillHide
-{
-    [self setViewMovedUp:NO];
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)sender
-{
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if  (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
+        if ([self.passwordTextField.text isEqualToString:self.confirmPasswordTextField.text]){
+       
+            [[DSServerManager sharedManager] registerUser: self.loginTextField.text password: self.passwordTextField.text onSuccess:^(DSUser *user) {
+           
+                  [self performSegueWithIdentifier:@"ShowShop" sender:self];
+           
+            } onFailure:^(NSError *error, NSInteger statusCode) {
+               NSLog(@"error = %@, code = %d", [error localizedDescription], statusCode);
+        }];
+        
+        }
     }
 }
 
@@ -155,31 +122,46 @@
 }
 
 
-//method to move the view up/down whenever the keyboard is shown/dismissed
--(void)setViewMovedUp:(BOOL)movedUp
+#pragma mark UITextField delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    [textField resignFirstResponder];
     
+    return YES;
+}
+
+
+#pragma mark keyboard notifications
+
+- (void)keyboardWillShow: (NSNotification *)notification {
+    
+    UIViewAnimationCurve animationCurve = [[[notification userInfo] valueForKey: UIKeyboardAnimationCurveUserInfoKey] intValue];
+    NSTimeInterval animationDuration = [[[notification userInfo] valueForKey: UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    self.keyboardBounds = [(NSValue *)[[notification userInfo] objectForKey: UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    [UIView beginAnimations:nil context: nil];
+    [UIView setAnimationCurve:animationCurve];
+    [UIView setAnimationDuration:animationDuration];
     CGRect rect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= KEYBOARD_OFFSET;
-        rect.size.height += KEYBOARD_OFFSET;
-    }
-    else
-    {
-        // revert back to the normal state.
-        rect.origin.y += KEYBOARD_OFFSET;
-        rect.size.height -= KEYBOARD_OFFSET;
-    }
+    rect.size.height -= self.keyboardBounds.size.height;
     self.view.frame = rect;
-    
+
     [UIView commitAnimations];
 }
 
 
+- (void)keyboardWillHide: (NSNotification *)notification {
+    
+    UIViewAnimationCurve animationCurve = [[[notification userInfo] valueForKey: UIKeyboardAnimationCurveUserInfoKey] intValue];
+    NSTimeInterval animationDuration = [[[notification userInfo] valueForKey: UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView beginAnimations:nil context: nil];
+    [UIView setAnimationCurve:animationCurve];
+    [UIView setAnimationDuration:animationDuration];
+    CGRect rect = self.view.frame;
+    rect.size.height += self.keyboardBounds.size.height;
+    self.view.frame = rect;
+    [UIView commitAnimations];
+    
+}
 
 @end

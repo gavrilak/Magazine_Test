@@ -19,4 +19,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *) responseObject;
 
+- (CGFloat) heightForText:(NSString*) text;
+
 @end

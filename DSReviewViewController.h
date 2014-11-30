@@ -1,5 +1,5 @@
 //
-//  DSProductViewController.h
+//  DSReviewViewController.h
 //  Magazine_Test
 //
 //  Created by Dima on 11/22/14.
@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSAddReviewViewController.h"
 #import "DSReview.h"
 #import "DSProduct.h"
 
-@interface DSProductViewController : UIViewController
-
+@interface DSReviewViewController : UIViewController <DSAddReviewDelegete , UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) DSProduct* product;

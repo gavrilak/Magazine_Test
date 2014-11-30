@@ -7,6 +7,7 @@
 //
 
 #import "DSMainViewController.h"
+#import "DSServerManager.h"
 
 @implementation DSMainViewController
 
@@ -60,9 +61,20 @@
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
     }else{
-      //  [[LoginService sharedClient] loginUser:self.loginTextField.text password:self.passwordTextField.text];
-        
-        [self performSegueWithIdentifier:@"ShowUser" sender:self];
+  
+        [[DSServerManager sharedManager] loginUser:self.loginTextField.text password:self.passwordTextField.text onSuccess:^(id succsecc) {
+            NSLog(@"Ok");
+            
+        } onFailure:^(NSError *error, NSInteger statusCode) {
+            NSLog(@"error = %@, code = %d", [error localizedDescription], statusCode);
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                        message:NSLocalizedString(@"Login failed.....", nil)
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+        }];
+     
+       
     }
 }
 

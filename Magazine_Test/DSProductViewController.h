@@ -1,5 +1,5 @@
 //
-//  DSViewController.h
+//  DSProductViewController.h
 //  Magazine_Test
 //
 //  Created by Dima on 11/22/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSViewController : UIViewController <UITableViewDataSource , UITableViewDelegate>
+@interface DSProductViewController : UIViewController <UITableViewDataSource , UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

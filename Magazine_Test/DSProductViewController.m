@@ -1,25 +1,25 @@
 //
-//  DSViewController.m
+//  DSReviewController.m
 //  Magazine_Test
 //
 //  Created by Dima on 11/22/14.
 //  Copyright (c) 2014 Dima Soldatenko. All rights reserved.
 //
 
-#import "DSViewController.h"
+#import "DSReviewViewController.h"
 #import "DSServerManager.h"
 #import "DSProduct.h"
 #import "DSProductViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface DSViewController ()
+@interface DSProductViewController ()
 
 @property (strong, nonatomic) NSArray* productArray;
 @property (assign, nonatomic) NSInteger selectedItem;
 
 @end
 
-@implementation DSViewController
+@implementation DSProductViewController
 
 - (void)viewDidLoad
 {
@@ -103,7 +103,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   
-    DSProductViewController *dc = [segue destinationViewController];
+    DSReviewViewController *dc = [segue destinationViewController];
     dc.product = [self.productArray objectAtIndex:self.selectedItem];
     
 }

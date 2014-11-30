@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8DE68676-4602-42ED-B57A-B47ACBDDFEEA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Magazine_Test</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7C55B278-3E58-4E9C-955B-B9CC94F0BACD</key>
+		<string>https://github.com/gavrilak/Magazine_Test.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Magazine_Test.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7C55B278-3E58-4E9C-955B-B9CC94F0BACD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/gavrilak/Magazine_Test.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7C55B278-3E58-4E9C-955B-B9CC94F0BACD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7C55B278-3E58-4E9C-955B-B9CC94F0BACD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Magazine_Test</string>
+		</dict>
+	</array>
+</dict>
+</plist>
