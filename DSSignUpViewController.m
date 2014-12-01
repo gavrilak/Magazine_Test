@@ -122,7 +122,7 @@
 }
 
 
-#pragma mark UITextField delegate
+#pragma mark - UITextField delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -132,7 +132,7 @@
 }
 
 
-#pragma mark keyboard notifications
+#pragma mark - Keyboard Notifications
 
 - (void)keyboardWillShow: (NSNotification *)notification {
     
